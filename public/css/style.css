@@ -1,4 +1,10 @@
-header, .project:not(:last-child) {
+:root {
+  --main-color: rgb(49, 23, 4);
+  --secondary-color: rgb(215, 243, 189);
+}
+
+header,
+.project:not(:last-child) {
   border-bottom: 1px solid #ccc;
 }
 
@@ -21,4 +27,73 @@ header, .project:not(:last-child) {
   color: #056605;
   font-weight: bold;
   margin-left: -5px;
+}
+
+.timestamp {
+  text-align: right;
+  color: grey;
+}
+
+.my-card {
+  margin-bottom: 10px;
+  border: 0;
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+}
+
+.content {
+  margin: 5px;
+  background-color: var(--secondary-color);
+  padding: 10px;
+  color: var(--main-color);
+}
+
+.title {
+  color: var(--secondary-color);
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.card-header {
+  border: none;
+  background-color: none;
+}
+
+body {
+  background-color: var(--secondary-color);
+  font-size: 20px;
+}
+
+.my-navbar {
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+}
+
+.my-link {
+  display: block;
+  padding: 5px 20px;
+  color: var(--secondary-color);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.login-signup,
+.login-signup:visited {
+  color: rgb(3, 25, 223);
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.login-signup-btn {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.comment-top {
+  padding: 20px 0;
+}
+
+.comment-box {
+  border: rgb(97, 162, 248) 4px solid;
 }

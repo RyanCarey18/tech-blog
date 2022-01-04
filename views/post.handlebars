@@ -1,0 +1,38 @@
+
+<div class="card my-card">
+  <div class="card-header row">
+      <div class="col title">{{title}}</div>
+      <p class="col timestamp"> Created by {{user.username}} on {{format_date date_created}}</p>
+  </div>
+    <div class="content">{{content}}</div>
+</div>
+
+{{#each comments as |comment| }}
+
+<div class="card my-card">
+  <div class="card-header row">
+      <div class="title comment-top"></div>
+  </div>
+  <div class="content">
+    <div>{{comment.comment}}</div>
+    <p class="content"> --{{comment.user.username}}, {{format_date comment.date_created}}</p>
+  </div>
+</div>
+{{/each}}
+
+
+<div class="card my-card">
+  <div class="card-header row">
+      <div class="title comment-top"></div>
+  </div>
+<div class="mb-3 content">
+  <form class="comment-form">
+    <label for="exampleFormControlTextarea1" class="form-label">Comment</label>
+    <input  type="text" class="comment-form form-control comment-box" id="user-comment" rows="3"></input>
+    <div class="form-group d-grid gap-2">
+      <button class="btn btn-secondary login-signup-btn" id="btn" data-id="{{id}}" type="submit">Create</button>
+    </div>
+  </form>
+</div>
+
+<script src="/js/comment.js"></script>
