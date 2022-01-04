@@ -16,6 +16,27 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+//Edits a new post
+router.put("/:id", withAuth, async (req, res) => {
+  try {
+    const editPost = await Post.update(
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
+      {
+        where: {
+          id: req.body.id,
+        },
+      }
+    );
+
+    res.status(200).json(editPost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 //deletes a post
 router.delete("/:id", withAuth, async (req, res) => {
   try {

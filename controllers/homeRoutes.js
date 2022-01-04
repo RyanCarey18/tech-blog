@@ -65,6 +65,25 @@ router.get("/post/:id", withAuth, async (req, res) => {
   }
 });
 
+//load a post with the option to edit
+router.get("/edit/:id", withAuth, async (req, res) => {
+  try {
+    //Find a post by the post id
+    const editData = await Post.findByPk(req.params.id, {});
+
+    //grab the post
+    const post = editData.get({ plain: true });
+
+    //render the information to the post page
+    res.render("editpost", {
+      ...post,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Check the dashboard
 router.get("/dashboard", withAuth, async (req, res) => {
   try {

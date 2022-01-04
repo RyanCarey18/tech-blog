@@ -1,0 +1,27 @@
+<div class="card my-card">
+  <div class="card-header row">
+      <div class="title">Edit Post</div>
+  </div>
+    <div class="content">    
+      <form class="form new-post-form">
+        <div class="form-group">
+          <div for="post-title">Title</div>
+          <input type="text" class="form-control" value="{{title}}" id="post-title" placeholder="Title" aria-label="Title" aria-describedby="basic-addon1">
+        </div>
+        <div class="form-group">
+          <div for="post-content">Content</div>
+          <input type="text" class="form-control" value="{{content}}" id="post-content" placeholder="Content" aria-label="Content" aria-describedby="basic-addon1">
+        </div>
+        <div class="form-group d-grid gap-2">
+          <button class="btn btn-secondary login-signup-btn" id="btn" data-id="{{id}}" type="submit">Update Post</button>
+        </div>
+      </form>
+      <div class="form-group d-grid gap-2">
+          <button class="btn btn-secondary del-btn" id="del-btn" data-id="{{id}}" type="submit">Delete Post</button>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="/js/editpost.js"></script>

@@ -1,18 +1,12 @@
-{{#if posts.length}}
-  {{#each posts as |post|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/post/{{post.id}}">{{post.title}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
-      </div>
-    </div>
-  {{/each}}
-{{/if}}
+{{#each posts as |post|}}
+  <div class="row mb-2 dash-row btn-secondary">
+    <div class="col-6 color2"><a class="color2" href="/edit/{{post.id}}">{{post.title}}</a></div>
+    <p class="col-6 timestamp color2">{{format_date post.date_created}}</p>
+  </div>
+{{/each}}
 
-<div>
-  <a class="newpost" href="/newpost">Add New Post</a>
+
+<div class="newpost">
+  <a class="newpost-btn" href="/newpost"> + New Post</a>
 </div>
 
-<script src="./js/dashboard.js"></script>

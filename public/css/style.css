@@ -71,3 +71,36 @@ body {
 .comment-box {
   border: rgb(97, 162, 248) 4px solid;
 }
+
+.dash-row {
+  border-radius: 5px;
+}
+
+.dash-col {
+  margin: 5px 0;
+}
+
+.newpost {
+  text-align: center;
+  margin: 20px;
+}
+
+.newpost-btn {
+  background-color: var(--main-color);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--secondary-color);
+}
+
+.color2 {
+  color: var(--secondary-color);
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+.color1 {
+  color: var(--main-color);
+  text-decoration: none;
+}
