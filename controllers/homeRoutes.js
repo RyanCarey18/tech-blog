@@ -1,24 +1,24 @@
-const router = require('express').Router();
-const { Post, User, Comment } = require('../models');
-const withAuth = require('../utils/auth');
+const router = require("express").Router();
+const { Post, User, Comment } = require("../models");
+const withAuth = require("../utils/auth");
 
-router.get('/', async (req, res) => {
+//load the posts on the homescreen
+router.get("/", async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
+    // Get all Posts and join with user data
     const postData = await Post.findAll({
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ["username"],
         },
       ],
     });
 
-    // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // Pass serialized data and session flag into template
-    res.render('homepage', {
+    // Render Homepage with passed in data
+    res.render("homepage", {
       posts,
       logged_in: req.session.logged_in,
     });
@@ -27,31 +27,35 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/post/:id', withAuth, async (req, res) => {
+//The information to load a singular post with comments
+router.get("/post/:id", withAuth, async (req, res) => {
   try {
+    //Find a post by the post id with the included user and comment data.
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ['username'],
+          attributes: ["username"],
         },
         {
           model: Comment,
-          attributes: ['comment', 'date_created'],
+          attributes: ["comment", "date_created"],
           include: [
             {
               model: User,
-              attributes: ['username'],
+              attributes: ["username"],
             },
           ],
         },
       ],
     });
 
+    //grab the posts and and comments
     const post = postData.get({ plain: true });
     const comments = post.comments.map((comment) => comment);
 
-    res.render('post', {
+    //render the information to the post page
+    res.render("post", {
       ...post,
       comments,
       logged_in: req.session.logged_in,
@@ -61,18 +65,19 @@ router.get('/post/:id', withAuth, async (req, res) => {
   }
 });
 
-// Use withAuth middleware to prevent access to route
-router.get('/dashboard', withAuth, async (req, res) => {
+// Check the dashboard
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
+    // Find in the post information of the current user
     const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
+      attributes: { exclude: ["password"] },
       include: [{ model: Post }],
     });
 
     const user = userData.get({ plain: true });
 
-    res.render('dashboard', {
+    //render the users dashboard with gathered data
+    res.render("dashboard", {
       ...user,
       logged_in: true,
     });
@@ -81,28 +86,28 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+router.get("/login", (req, res) => {
+  // If the user is already logged in send them to their dashboard
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
+    res.redirect("/dashboard");
     return;
   }
 
-  res.render('login');
+  res.render("login");
 });
 
-router.get('/signup', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
+router.get("/signup", (req, res) => {
+  // If the user is already logged in send them to their dashboard
   if (req.session.logged_in) {
-    res.redirect('/dashboard');
+    res.redirect("/dashboard");
     return;
   }
 
-  res.render('signup');
+  res.render("signup");
 });
 
-router.get('/newpost', (req, res) => {
-  res.render('newpost');
+router.get("/newpost", (req, res) => {
+  res.render("newpost");
 });
 
 module.exports = router;
