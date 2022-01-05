@@ -16,7 +16,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-//Edits a new post
+//Edits a post
 router.put("/:id", withAuth, async (req, res) => {
   try {
     const editPost = await Post.update(
