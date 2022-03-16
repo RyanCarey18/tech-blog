@@ -14,6 +14,8 @@ Click [here](https://murmuring-shelf-05135.herokuapp.com/) to go to the deployed
 
 - [Installation](#Installation)
 
+- [Technologies](#Technologies)
+
 - [Usage](#Usage)
 
 - [Contributing](#Contributing)
@@ -41,6 +43,16 @@ npm i
 node seeds/seed.js
 
 ```
+
+## Technologies
+
+- HTML
+- CSS
+- Handlebars
+- MySql
+- Sequelize
+- express
+- express-session
 
 ## Usage
 
